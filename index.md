@@ -1,37 +1,40 @@
-## Welcome to GitHub Pages
+#εργασία 3 (εργασία χωρισμένη σε δύο μέρη)
+#έκδοση python 3.6
 
-You can use the [editor on GitHub](https://github.com/asidiropoylos/ergasia3/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+print ("Γ---------------------------------------")
+print ("|Εισαγωγή στην επιστήμη των υπολογιστών")
+print ("|Εργασία 3")
+print ("L---------------------------------------")
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+lstListOfNumbers = list() #δημιουργία λίστας (lst)
 
-### Markdown
+nTotalNumbers = int(input("Πόσους αριθμούς θα καταχωρήσετε στη λίστα: "))
+#έλεγχος για την τιμή της τιμής
+while nTotalNumbers < 0:
+    nTotalNumbers = int(input("Μη αποδεκτός αριθμός. Πληκτρολογήστε έναν αριθμό μεγαλύτερο ή ίσο του μηδενός: "))
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+if nTotalNumbers > 0:
+    print ("Επιλέξτε τους αριθμούς σας")
+    for nCounter in range(int(nTotalNumbers)):
+        number = int(input("τιμή αριθμού: "))
+        lstListOfNumbers.append(int(number))
+    print ("Η λίστα σας: ", lstListOfNumbers)
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/asidiropoylos/ergasia3/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+    #έλεγχος των items στη λίστα
+    # - ανίχνευση μηδενικών
+    # - διαγραφή τους από την εκάστωτε θέση τους
+    # - δημιουργία "μετακίνηση" μηδενικού στο τέλος της λ΄ίστας
+    nZerosCounter = 0 #μετρητής μηδενικών
+    nListPointer = 0
+    while 1: #σταθερή συνθήκη, πάντα True, μεχρι να μπει στο break
+        if lstListOfNumbers[nListPointer] == 0:
+            del lstListOfNumbers[nListPointer] #διαγραφή μηδενικού
+            lstListOfNumbers.append(0) #δημιουργία "μετακίνηση" μηδενικού στο τέλος της λίστας
+            nZerosCounter += 1 #έτοιμα (στο τέλος) μηδενικά
+        if lstListOfNumbers[nListPointer] != 0:
+            nListPointer += 1 #μετακίνηση του pointer στο επόμενο item
+        if (nTotalNumbers - nZerosCounter) == nListPointer or nListPointer == nTotalNumbers:
+            break #σταματαει το loop όταν όλα τα μηδενικά φτάσουν στο τέλος της λίστας ή δεν υπάρχουν μηδενικά στη λίστα γενικά
+    print ("Τέλος προγράμματος. Η νέα λίστα σας είναι: ", lstListOfNumbers)
+else:
+    print ("Δεν υπάρχουν στοιχεία στον πίνακα, ξανατρέξτε το πρόγραμμα")
